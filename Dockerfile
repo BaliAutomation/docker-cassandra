@@ -5,20 +5,20 @@ MAINTAINER Abhinav Ajgaonkar <abhinav316@gmail.com>
 # Download and extract Cassandra
 RUN \
   mkdir /opt/cassandra; \
-  wget -O - http://www.us.apache.org/dist/cassandra/2.1.5/apache-cassandra-2.1.5-bin.tar.gz \
+  wget -O - http://www.us.apache.org/dist/cassandra/3.0.1/apache-cassandra-3.0.1-bin.tar.gz \
   | tar xzf - --strip-components=1 -C "/opt/cassandra";
 
 # Download and extract DataStax OpsCenter Agent
 RUN \
   mkdir /opt/agent; \
-  wget -O - http://downloads.datastax.com/community/datastax-agent-5.1.0.tar.gz \
+  wget -O - http://downloads.datastax.com/community/datastax-agent-5.2.2.tar.gz \
   | tar xzf - --strip-components=1 -C "/opt/agent";
 
-ADD	. /src
+ADD . /src
 
 # Copy over daemons
-RUN	\
-	cp /src/cassandra.yaml /opt/cassandra/conf/; \
+RUN \
+    cp /src/cassandra.yaml /opt/cassandra/conf/; \
     mkdir -p /etc/service/cassandra; \
     cp /src/cassandra-run /etc/service/cassandra/run; \
     mkdir -p /etc/service/agent; \
